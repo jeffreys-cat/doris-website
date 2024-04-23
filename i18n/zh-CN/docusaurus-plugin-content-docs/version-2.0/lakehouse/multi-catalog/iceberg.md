@@ -57,6 +57,10 @@ CREATE CATALOG iceberg PROPERTIES (
 
 #### Hadoop Catalog
 
+> 注意：`warehouse` 的路径必须指向 `Database` 路径的上一级。
+>
+> 示例：如果你的表路径是：`s3://bucket/path/to/db1/table1`，那么 `warehouse` 应该是：`s3://bucket/path/to/`
+
 ```sql
 CREATE CATALOG iceberg_hadoop PROPERTIES (
     'type'='iceberg',
@@ -78,6 +82,17 @@ CREATE CATALOG iceberg_hadoop_ha PROPERTIES (
 );
 ```
 
+```sql
+CREATE CATALOG iceberg_s3 PROPERTIES (
+    'type'='iceberg',
+    'iceberg.catalog.type' = 'hadoop',
+    'warehouse' = 's3://bucket/dir/key',
+    's3.endpoint' = 's3.us-east-1.amazonaws.com',
+    's3.access_key' = 'ak',
+    's3.secret_key' = 'sk'
+);
+```
+
 #### Hive Metastore
 
 ```sql
@@ -96,6 +111,8 @@ CREATE CATALOG iceberg PROPERTIES (
 
 #### AWS Glue
 
+> 连接Glue时，如果是在非EC2环境，需要将EC2环境里的 `~/.aws` 目录拷贝到当前环境里。也可以下载[AWS Cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)工具进行配置，这种方式也会在当前用户目录下创建`.aws`目录。
+
 ```sql
 CREATE CATALOG glue PROPERTIES (
     "type"="iceberg",
@@ -106,7 +123,9 @@ CREATE CATALOG glue PROPERTIES (
 );
 ```
 
-Iceberg 属性详情参见 [Iceberg Glue Catalog](https://iceberg.apache.org/docs/latest/aws/#glue-catalog)
+1. Iceberg 属性详情参见 [Iceberg Glue Catalog](https://iceberg.apache.org/docs/latest/aws/#glue-catalog)
+
+2. 如果在AWS服务（如EC2）中，不填写Credentials相关信息（`glue.access_key`和`glue.secret_key`），Doris就会使用默认的DefaultAWSCredentialsProviderChain，它会读取系统环境变量或者InstanceProfile中配置的属性。
 
 #### 阿里云 DLF
 
@@ -212,5 +231,5 @@ CREATE CATALOG iceberg PROPERTIES (
 
 `SELECT * FROM iceberg_tbl FOR VERSION AS OF 868895038966572;`
 
-另外，可以使用 [iceberg_meta](../../sql-manual/sql-functions/table-functions/iceberg_meta.md) 表函数查询指定表的 snapshot 信息。
+另外，可以使用 [iceberg_meta](../../sql-manual/sql-functions/table-functions/iceberg-meta.md) 表函数查询指定表的 snapshot 信息。
 

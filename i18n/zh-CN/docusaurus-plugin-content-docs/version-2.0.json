@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "2.0",
+    "message": "dev",
     "description": "The label for version current"
   },
   "sidebar.docs.category.Getting Started": {
@@ -20,7 +20,7 @@
     "description": "Make docker image and quickly start Doris's Docker cluster"
   },
   "sidebar.docs.category.Deploy Doris on Kubernetes": {
-    "message": "基于 Kubernetes 部署",
+    "message": "Doris on Kubernetes",
     "description": "The label for category Deploy Doris on Kubernetes in sidebar docs"
   },
   "sidebar.docs.category.Source Code Compilation": {
@@ -75,9 +75,17 @@
     "message": "Doris 表分区",
     "description": "The label for category Doris Partition in sidebar docs"
   },
+  "sidebar.docs.category.Slow Query Analysis": {
+    "message": "分析慢查询",
+    "description": "The label for category Join Optimization in sidebar docs"
+  },
   "sidebar.docs.category.Join Optimization": {
     "message": "Join 优化",
     "description": "The label for category Join Optimization in sidebar docs"
+  },
+  "sidebar.docs.category.Async Materialized View": {
+    "message": "异步物化视图",
+    "description": "The label for category Async Materialized View in sidebar docs"
   },
   "sidebar.docs.category.Data Cache": {
     "message": "数据缓存",
@@ -94,6 +102,10 @@
   "sidebar.docs.category.Ecosystem": {
     "message": "生态扩展",
     "description": "The label for category Ecosystem in sidebar docs"
+  },
+  "sidebar.docs.category.BI and Database IDE": {
+    "message": "BI 与数据库 IDE",
+    "description": "The label for category BI and Database IDE in sidebar docs"
   },
   "sidebar.docs.category.Doris Manager": {
     "message": "Doris Manager",
@@ -311,9 +323,17 @@
     "message": "多源数据目录",
     "description": "The label for category Lakehouse.Multi Catalog in sidebar docs"
   },
+  "sidebar.docs.category.Cloud Service Authentication": {
+    "message": "云服务认证接入",
+    "description": "The label for category Lakehouse.Cloud Service Authentication in sidebar docs"
+  },
   "sidebar.docs.category.External Table": {
     "message": "外部表",
     "description": "The label for category Lakehouse.External Table in sidebar docs"
+  },
+  "sidebar.docs.category.Separation of Storage and Compute": {
+    "message": "存算分离",
+    "description": "Separation of Storage and Compute"
   },
   "sidebar.docs.category.Release notes": {
     "message": "版本发布",

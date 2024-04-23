@@ -49,7 +49,7 @@ Hdfs load 创建导入语句，导入方式和[Broker Load](../../../data-operat
 
 1. 创建一张表
 
-   通过 `CREATE TABLE` 命令在`demo`创建一张表用于存储待导入的数据。具体的导入方式请查阅 [CREATE TABLE](../../../sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-TABLE) 命令手册。示例如下：
+   通过 `CREATE TABLE` 命令在`demo`创建一张表用于存储待导入的数据。具体的导入方式请查阅 [CREATE TABLE](../../../sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-TABLE.md) 命令手册。示例如下：
 
    ```sql
    CREATE TABLE IF NOT EXISTS load_hdfs_file_test

@@ -1,7 +1,7 @@
 ---
 {
-"title": "基于 Helm Chart 部署",
-"language": "zh-CN"
+      "title": "基于 Helm Chart 部署",
+      "language": "zh-CN"
 }
 ---
 
@@ -46,7 +46,7 @@ doris-repo/doris-operator     1.3.1            1.3.1         Doris-operator for 
 doris-repo/doris              1.3.1            2.0.3         Apache Doris is an easy-to-use ...
 ```
 
-## 安装 doris-operator
+## 安装 doris-operator 
 
 ### 1. 安装
 - 使用默认配置安装 [doris-operator](https://artifacthub.io/packages/helm/doris/doris-operator)，默认在名为 `doris` 的 namespace 里面
@@ -65,7 +65,7 @@ NAME                              READY   STATUS    RESTARTS   AGE
 doris-operator-866bd449bb-zl5mr   1/1     Running   0          18m
 ```
 
-## 安装 doriscluster
+## 安装 doriscluster 
 
 ### 1. 安装
 - 安装 [doriscluster](https://artifacthub.io/packages/helm/doris/doris)，使用默认配置此部署仅部署 3个 FE 和 3个 BE 组件，使用默认 `storageClass` 实现 PV 动态供给

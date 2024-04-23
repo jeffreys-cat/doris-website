@@ -52,7 +52,7 @@ $> cat /proc/cpuinfo
 model name  : Phytium,FT-2000+/64
 ```
 
-2. CentOS 8.4
+2. CentOS 7.9 及以上
 
 ```shell
 $> lsb_release -a
@@ -83,7 +83,7 @@ Codename:	AltArch
 ### 软件环境安装命令
 
 <Tabs>
-  <TabItem value="CentOS 8.4" label="CentOS 8.4" default>
+  <TabItem value="CentOS 7.9" label="CentOS 7.9" default>
     <p>
 
 1. 创建软件下载安装包根目录和软件安装根目录
@@ -124,7 +124,7 @@ mkdir /opt/software
 ```shell
   cd /opt/tools
   # wget 工具下载后，直接解压缩配置环境变量使用
-  wget https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz && \
+  wget https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz && \
     tar -zxvf apache-maven-3.6.3-bin.tar.gz && \
     mv apache-maven-3.6.3 /opt/software/maven
 ```

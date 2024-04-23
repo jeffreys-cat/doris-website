@@ -30,12 +30,11 @@ under the License.
 
 **GitHub 下载：** [https://github.com/apache/doris/releases](https://github.com/apache/doris/releases)
 
-
 ## 行为变更
 - 提供了更精确的 Precision 和 Scale 推导，可满足金融场景计算的高要求
   - [https://github.com/apache/doris/pull/28034](https://github.com/apache/doris/pull/28034)
 - Drop Policy 支持了 User 和 Role
-  - [https://github.com/apache/doris/pull/29488](https://github.com/apache/doris/pull/29488)
+  - [https://github.com/apache/doris/pull/29488](https://github.com/apache/doris/pull/29488) 
 
 ## 新功能
 - 新优化器支持了 datev1， datetimev1 及 decimalv2 数据类型
@@ -52,6 +51,7 @@ under the License.
 - 对 ASCII 字符串 substr 进行了优化
 - 针对使用 date 函数查询时的分区裁剪进行了优化
 - 针对优化器自动统计信息收集的可观测性和性能进行了优化
+
 
 ## 致谢
 

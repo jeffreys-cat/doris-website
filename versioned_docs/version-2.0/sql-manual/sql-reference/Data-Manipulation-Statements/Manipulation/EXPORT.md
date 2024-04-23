@@ -96,6 +96,8 @@ The bottom layer of the `Export` statement actually executes the `select...outfi
   
   - `with_bom`: The default is false. If it is set to true, the exported file is encoded in UTF8 with BOM (valid only for CSV-related file format).
 
+  - `data_consistency`: can be set to` none` / `partition` , default value is `partition`. This parameter indicates the granularity at which the export table is shred, `none` represents tablets level, and` partition` represents partition level.
+
   - `timeout`: This is the timeout parameter of the export job, the default timeout is 2 hours, and the unit is seconds.
 
   > Note that to use the `delete_existing_files` parameter, you also need to add the configuration `enable_delete_existing_files = true` to the fe.conf file and restart the FE. Only then will the `delete_existing_files` parameter take effect. Setting `delete_existing_files = true` is a dangerous operation and it is recommended to only use it in a testing environment.
@@ -151,7 +153,7 @@ The bottom layer of the `Export` statement actually executes the `select...outfi
     AWS_ACCESS_KEY
     AWS_SECRET_KEY
     AWS_REGION
-    use_path_stype: (optional) default false . The S3 SDK uses the virtual-hosted style by default. However, some object storage systems may not be enabled or support virtual-hosted style access. At this time, we can add the use_path_style parameter to force the use of path style access method.
+    use_path_style: (optional) default false . The S3 SDK uses the virtual-hosted style by default. However, some object storage systems may not be enabled or support virtual-hosted style access. At this time, we can add the use_path_style parameter to force the use of path style access method.
   ```
 
 ### Example
@@ -347,7 +349,7 @@ WITH BROKER "broker_name"
 
   #### Concurrent Export
 
-  An Export job can be configured with the `parallelism` parameter to concurrently export data. The `parallelism` parameter specifies the number of threads to execute the `EXPORT Job`. Each thread is responsible for exporting a subset of the total tablets.
+  An Export job can be configured with the `parallelism` parameter to concurrently export data. The `parallelism` parameter specifies the number of threads to execute the `EXPORT Job`. When you set `"data_consistency" = "none"` , each thread is responsible for exporting a subset of the total tablets.
 
   The underlying execution logic of an `Export Job `is actually the `SELECT INTO OUTFILE` statement. Each thread specified by the `parallelism` parameter executes independent `SELECT INTO OUTFILE` statements.
 
@@ -359,6 +361,11 @@ WITH BROKER "broker_name"
   When the number of tablets responsible for a thread exceeds the `maximum_tablets_of_outfile_in_export` value (default is 10, and can be modified by adding the `maximum_tablets_of_outfile_in_export` parameter in fe.conf), the thread will split the tablets which are responsibled for this thread into multiple `SELECT INTO OUTFILE` statements. For example:
 
   - If a thread is responsible for 14 tablets and `maximum_tablets_of_outfile_in_export = 10`, then the thread will be responsible for two `SELECT INTO OUTFILE` statements. The first `SELECT INTO OUTFILE` statement exports 10 tablets, and the second `SELECT INTO OUTFILE` statement exports 4 tablets. The two `SELECT INTO OUTFILE` statements are executed serially by this thread.
+
+  If you want to export the table with Parition granularity, you can set the export property `"data_consistence" = "partition"`. At this time, the threads of the export task are divided into multiple `Outfile` statements with Parition particle size. The parition exported by different Outfile statements is different. The data exported by the same `Outfile` statement are guaranted to be belong to the same partition. For example: when you set `"data_consisteency" = "partition"`:
+
+  - num(partition) = 40, parallelism = 3, then the three threads will be responsible for 14, 13, and 13 partitions, respectively.
+  - num(partition) = 2, parallelism = 3, then Doris automatically sets the parallelism to 2, and each thread is responsible for one partition.
 
   #### memory limit
 

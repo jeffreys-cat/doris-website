@@ -161,7 +161,7 @@ data:
     enable_fqdn_mode = true
 ```
 
-Note that when using FE's ConfigMap, you must add `enable_fqdn_mode = true` to `fe.conf`. For specific reasons, please refer to [document here](https://doris.apache.org/docs/admin-manual/cluster-management/fqdn)
+Note that when using FE's ConfigMap, you must add `enable_fqdn_mode = true` to `fe.conf`. For specific reasons, please refer to [document here](https://doris.apache.org/docs/dev/admin-manual/cluster-management/fqdn)
 
 BE's ConfigMap sample
 ```yaml
@@ -187,7 +187,7 @@ data:
 
     # https://github.com/apache/doris/blob/master/docs/zh-CN/community/developer-guide/debug-tool.md#jemalloc-heap-profile
     # https://jemalloc.net/jemalloc.3.html
-    JEMALLOC_CONF="percpu_arena:percpu,background_thread:true,metadata_thp:auto,muzzy_decay_ms:15000,dirty_decay_ms:15000,oversize_threshold:0,lg_tcache_max:20,prof:false,lg_prof_interval:32,lg_prof_sample:19,prof_gdump:false,prof_accum:false,prof_leak:false,prof_final:false"
+    JEMALLOC_CONF="percpu_arena:percpu,background_thread:true,metadata_thp:auto,muzzy_decay_ms:15000,dirty_decay_ms:15000,oversize_threshold:0,prof:false,lg_prof_interval:32,lg_prof_sample:19,prof_gdump:false,prof_accum:false,prof_leak:false,prof_final:false"
     JEMALLOC_PROF_PRFIX=""
 
     # INFO, WARNING, ERROR, FATAL
@@ -252,7 +252,7 @@ spec:
 The `resolveKey` here is the name of the incoming configuration file (must be `fe.conf`, `be.conf` or `apache_hdfs_broker.conf`, the cn node is also `be.conf`) used to parse the incoming Doris cluster configuration file, doris-operator will parse the file to guide the customized deployment of doriscluster.
 
 ## Add special configuration files to the conf directory
-This paragraph is for reference. Containerized deployment solutions that configure other files need to be placed in the conf directory of the Doris node. For example, the common HDFS/Hive configuration file mapping of [Data Lake Multi-catalog](https://doris.apache.org/docs/lakehouse/multi-catalog/hive).
+This paragraph is for reference. Containerized deployment solutions that configure other files need to be placed in the conf directory of the Doris node. For example, the common HDFS/Hive configuration file mapping of [Data Lake Multi-catalog](https://doris.apache.org/docs/dev/lakehouse/multi-catalog/hive).
 
 Here we take BE's ConfigMap and the core-site.xml file that needs to be added as an example:
 ```yaml
@@ -402,7 +402,7 @@ data:
 
     # https://github.com/apache/doris/blob/master/docs/zh-CN/community/developer-guide/debug-tool.md#jemalloc-heap-profile
     # https://jemalloc.net/jemalloc.3.html
-    JEMALLOC_CONF="percpu_arena:percpu,background_thread:true,metadata_thp:auto,muzzy_decay_ms:15000,dirty_decay_ms:15000,oversize_threshold:0,lg_tcache_max:20,prof:false,lg_prof_interval:32,lg_prof_sample:19,prof_gdump:false,prof_accum:false,prof_leak:false,prof_final:false"
+    JEMALLOC_CONF="percpu_arena:percpu,background_thread:true,metadata_thp:auto,muzzy_decay_ms:15000,dirty_decay_ms:15000,oversize_threshold:0,prof:false,lg_prof_interval:32,lg_prof_sample:19,prof_gdump:false,prof_accum:false,prof_leak:false,prof_final:false"
     JEMALLOC_PROF_PRFIX=""
 
     # INFO, WARNING, ERROR, FATAL
@@ -416,5 +416,5 @@ data:
     
     storage_root_path = /opt/apache-doris/be/storage,medium:ssd;/opt/apache-doris/be/storage1,medium:ssd
 ```
-When using multiple disks, the path in the corresponding value of `storage_root_path` in `ConfigMap` should correspond to each mounting path of `persistentVolume` in `doriscluster`. [`storage_root_path`](https://doris.apache.org/docs/admin-manual/config/be-config/?_highlight=storage_root_path#%E6%9C%8D%E5%8A%A1) For the corresponding writing rules, please refer to the document in the link.
+When using multiple disks, the path in the corresponding value of `storage_root_path` in `ConfigMap` should correspond to each mounting path of `persistentVolume` in `doriscluster`. [`storage_root_path`](https://doris.apache.org/docs/dev/admin-manual/config/be-config/#storage_root_path) For the corresponding writing rules, please refer to the document in the link.
 When using cloud disks, the media is uniformly `SSD`.

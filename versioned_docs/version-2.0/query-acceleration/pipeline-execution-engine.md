@@ -32,7 +32,7 @@ under the License.
 
 Pipeline execution engine is an experimental feature added by Doris in version 2.0. The goal is to replace the current execution engine of Doris's volcano model, fully release the computing power of multi-core CPUs, and limit the number of Doris's query threads to solve the problem of Doris's execution thread bloat.
 
-Its specific design, implementation and effects can be found in [DSIP-027]([DSIP-027: Support Pipeline Exec Engine - DORIS - Apache Software Foundation](https://cwiki.apache.org/confluence/display/DORIS/DSIP-027%3A+Support+Pipeline+Exec+Engine))。
+Its specific design, implementation and effects can be found in [DSIP-027]([DSIP-027: Support Pipeline Exec Engine - DORIS - Apache Software Foundation](https://cwiki.apache.org/confluence/display/DORIS/DSIP-027%3A+Support+Pipeline+Exec+Engine)).
 
 ## Principle
 
@@ -59,21 +59,26 @@ This improves the efficiency of CPU execution on mixed-load SQL and enhances the
 
 ## Usage
 
-### Set session variable
+### Query
 
-#### enable_pipeline_engine
+1. enable_pipeline_engine
 
-This improves the efficiency of CPU execution on mixed-load SQL and enhances the performance of SQL queries
+Setting the session variable `enable_pipeline_engine` to `true` will make BE to use the Pipeline execution engine when performing query execution.
 
-```
+```sql
 set enable_pipeline_engine = true;
 ```
 
-#### parallel_pipeline_task_num
+2. parallel_pipeline_task_num
 
-`parallel_pipeline_task_num` represents the concurrency of pipeline tasks of a query. Default value is `0` (e.g. half number of CPU cores). Users can adjust this value according to their own workloads.
+The `parallel_pipeline_task_num` represents the number of Pipeline Tasks for a SQL query to be queried concurrently.The default configuration of Doris is `0`, in which case the number of Pipeline Tasks will be automatically set to half of the minimum number of CPUs in the current cluster machine. You can also adjust it according to your own situation.
 
-```
+```sql
 set parallel_pipeline_task_num = 0;
 ```
-You can limit the automatically configured concurrency by setting "max_instance_num."（The default value is 64)
+
+You can limit the automatically configured concurrency by setting `max_instance_num`（The default value is 64)
+
+### Load
+
+The engine selected for import are detailed in the [Import](../data-operate/import/load-manual) documentation.

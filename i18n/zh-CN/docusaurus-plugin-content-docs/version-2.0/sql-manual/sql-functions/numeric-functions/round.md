@@ -30,11 +30,6 @@ under the License.
 `T round(T x[, d])`
 将`x`四舍五入后保留d位小数，d默认为0。如果d为负数，则小数点左边d位为0。如果x或d为null，返回null。
 2.5会舍入到3，如果想要舍入到2的算法，请使用round_bankers函数。
-
-:::tip
-该函数的另一个别名为 `dround`。
-:::
-
 ### example
 
 ```
@@ -77,4 +72,4 @@ mysql> select round(1667.2725, -2);
 ```
 
 ### keywords
-	ROUND, DROUND
+	ROUND

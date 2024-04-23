@@ -30,10 +30,6 @@ under the License.
 `DOUBLE sqrt(DOUBLE x)`
 返回`x`的平方根，要求x大于或等于0.
 
-:::tip
-该函数的另一个别名为 `dfloor`。
-:::
-
 ### example
 
 ```
@@ -58,4 +54,4 @@ mysql> select sqrt(100.0);
 ```
 
 ### keywords
-	SQRT, DSQRT
+	SQRT

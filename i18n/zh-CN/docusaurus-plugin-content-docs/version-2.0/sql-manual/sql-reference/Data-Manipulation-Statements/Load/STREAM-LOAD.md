@@ -152,7 +152,7 @@ curl --location-trusted -u user:passwd [-H ""...] -T data.file -XPUT http://fe_h
 
 28. comment: <version since="1.2.3" type="inline"> 字符串类型, 默认值为空. 给任务增加额外的信息. </version>
 
-29. enclose: <version since="dev" type="inline"> 包围符。当csv数据字段中含有行分隔符或列分隔符时，为防止意外截断，可指定单字节字符作为包围符起到保护作用。例如列分隔符为","，包围符为"'"，数据为"a,'b,c'",则"b,c"会被解析为一个字段。注意：当 enclose 设置为`"`时，trim_double_quotes 一定要设置为 true。</version>
+29. enclose: <version since="dev" type="inline"> 包围符。当csv数据字段中含有行分隔符或列分隔符时，为防止意外截断，可指定单字节字符作为包围符起到保护作用。例如列分隔符为","，包围符为"'"，数据为"a,'b,c'",则"b,c"会被解析为一个字段。 </version>
   
 30. escape <version since="dev" type="inline"> 转义符。用于转义在字段中出现的与包围符相同的字符。例如数据为"a,'b,'c'"，包围符为"'"，希望"b,'c被作为一个字段解析，则需要指定单字节转义符，例如"\"，然后将数据修改为"a,'b,\'c'"。 </version>
 
@@ -455,7 +455,3 @@ curl --location-trusted -u user:passwd [-H ""...] -T data.file -XPUT http://fe_h
     例如，Doris 系统时区为 "+08:00"，导入数据中的时间列包含两条数据，分别为 "2012-01-01 01:00:00Z" 和 "2015-12-12 12:12:12-08:00"，则我们在导入时通过 `-H "timezone: +08:00"` 指定导入事务的时区后，这两条数据都会向该时区发生转换，从而得到结果 "2012-01-01 09:00:00" 和 "2015-12-13 04:12:12"。
 
     更详细的理解，请参阅[时区](../../../../advanced/time-zone)文档。
-
-11. 导入的执行引擎使用
-
-    Session Variable `enable_pipeline_load` 决定是否尝试开启 Pipeline 引擎执行 Streamload 任务。详见[导入](../../../../data-operate/import/load-manual)文档。

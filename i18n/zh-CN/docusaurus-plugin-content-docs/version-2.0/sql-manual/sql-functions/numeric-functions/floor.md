@@ -30,10 +30,6 @@ under the License.
 `BIGINT floor(DOUBLE x)`
 返回小于或等于`x`的最大整数值.
 
-:::tip
-该函数的另一个别名为 `dfloor`。
-:::
-
 ### example
 
 ```
@@ -58,4 +54,4 @@ mysql> select floor(-10.3);
 ```
 
 ### keywords
-	FLOOR, DFLOOR
+	FLOOR

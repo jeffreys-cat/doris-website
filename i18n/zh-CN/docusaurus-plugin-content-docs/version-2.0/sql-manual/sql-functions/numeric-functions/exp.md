@@ -30,10 +30,6 @@ under the License.
 `DOUBLE exp(DOUBLE x)`
 返回以`e`为底的`x`的幂.
 
-:::tip
-该函数的另一个别名为 `dexp`。
-:::
-
 ### example
 
 ```
@@ -52,4 +48,4 @@ mysql> select exp(3.4);
 ```
 
 ### keywords
-	EXP, DEXP
+	EXP

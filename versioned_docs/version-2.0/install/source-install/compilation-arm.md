@@ -50,7 +50,7 @@ $> cat /proc/cpuinfo
 model name  : Phytium,FT-2000+/64
 ```
 
-2. CentOS 8.4
+2. CentOS 7.9 or higher
 
 ```shell
 $> lsb_release -a
@@ -79,7 +79,7 @@ Codename:	AltArch
 ### Software Environment Installation Command
 
 <Tabs>
-  <TabItem value="CentOS 8.4" label="CentOS 8.4" default>
+  <TabItem value="CentOS 7.9" label="CentOS 7.9" default>
     <p>
 
 1. Create root directories for pacakges
@@ -120,7 +120,7 @@ mkdir /opt/software
 ```shell
   cd /opt/tools
   # Download the wget tool, decompress it, and configure the environment variables.
-  wget https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz && \
+  wget https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz && \
     tar -zxvf apache-maven-3.6.3-bin.tar.gz && \
     mv apache-maven-3.6.3 /opt/software/maven
 ```
@@ -638,3 +638,4 @@ If you still encounter problems when compiling or starting, please consult the [
   - Check if the ldb-toolchain environment variable is configured
   - Check that the gcc version matches the one recommended in the [compile-with-ldb-toolchain](./compilation-with-ldb-toolchain) documentation.
   - Delete the ldb directory after the `ldb_toolchain_gen.aarch64.sh` script is executed, re-execute and configure the environment variables, and verify the gcc version
+
